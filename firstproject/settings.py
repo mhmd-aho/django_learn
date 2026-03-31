@@ -55,7 +55,7 @@ ROOT_URLCONF = 'firstproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +79,7 @@ DATABASES = {
         'NAME':'firstproject',
         'USER' : 'admindjango',
         'PASSWORD':'passwors',
-        'HOST':'127.0.0.1',
+        'HOST':'localhost',
         'PORT' : '3306',
     }
 }

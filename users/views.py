@@ -1,26 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import UserForm
+from .models import User
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseNotFound
 
-def index(request): 
-    greet = "<h1 style='color: red;'>Hello,i'm mohamad abou hamoud</h1>"
-    return HttpResponse(greet)
-def greet(request,id):
-    users = {
-        '12':"mohamad abou hamoud from saida",
-        '23':"bassam rekab from syria",
-        '34':"mhmd shndr from tripoli",
-    } 
-    return HttpResponse(f"""
-    <h1>Hello, {id}</h1>
-    <p>{users[id]}</p>
-    """)
+def usersList(request):
+    users = User.objects.all()
+    return render(request, 'users.html', {'users': users})
+def userById(request,id):
+    user = User.objects.get(id = id)
+    return render(request, 'user.html', {'user': user})
 def register(request):
     form = UserForm()
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-             form.save()
+            form.save()
+            return redirect('/users/')
+        else:
+            form = UserForm()
     return render(request, 'register.html', {'form': form})

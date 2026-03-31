@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+       {% block content %}
+        <ul>
+            <li>{{user.firstName | title}} {{user.lastName | title}}</li>
+            <li>Location : {{user.nationality | title}}</li>
+        </ul>
+        {% endblock%}

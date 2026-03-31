@@ -1,9 +1,9 @@
-from django.urls import path,re_path
+from django.urls import path
 from . import views
 
 
 urlpatterns = [
-    path('', views.index),
-    re_path(r'^([0-9]{2})/$',views.greet),
-    path('register/',views.register)
+    path('', views.usersList),
+    path('register/', views.register),
+    path('<int:id>/', views.userById),
 ]
